@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>Exit fullscreen</title>
+  <g stroke="#FFFFFF" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter">
+    <!-- Top-left inward arrow -->
+    <path d="M15 15L29 29"/>
+    <path d="M29 15V29H15"/>
+
+    <!-- Top-right inward arrow -->
+    <path d="M49 15L35 29"/>
+    <path d="M35 15V29H49"/>
+
+    <!-- Bottom-left inward arrow -->
+    <path d="M15 49L29 35"/>
+    <path d="M29 49V35H15"/>
+
+    <!-- Bottom-right inward arrow -->
+    <path d="M49 49L35 35"/>
+    <path d="M35 49V35H49"/>
+  </g>
+</svg>

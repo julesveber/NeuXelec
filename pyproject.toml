@@ -1,0 +1,91 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neuxelec"
+version = "1.0.0"
+description = "SEEG electrode reconstruction and 3D neuroimaging visualization"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "GPL-3.0-or-later" }
+authors = [{ name = "Jules Veber", email = "contact@neuxelec.com" }]
+keywords = ["SEEG", "neuroimaging", "electrode", "coregistration", "epilepsy", "MNI", "visualization"]
+
+# Runtime dependencies are pinned in requirements.txt for reproducible
+# scientific results. The loose lower bounds here document minimum versions.
+dependencies = [
+    "PySide6>=6.6",
+    "numpy>=1.24",
+    "nibabel>=5.2",
+    "SimpleITK>=2.3",
+    "pyvista>=0.44",
+    "pyvistaqt>=0.11",
+    "vtk>=9.2",
+    "scikit-image>=0.22",
+    "scipy>=1.11",
+    "matplotlib>=3.8",
+    "openpyxl>=3.1",
+]
+
+[project.urls]
+Homepage = "https://neuxelec.com"
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-cov>=5.0", "ruff>=0.6", "black>=24.0", "mypy>=1.11"]
+
+[project.scripts]
+neuxelec = "neuxelec.app:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# ---------------------------------------------------------------------------
+# Ruff - fast linter
+# ---------------------------------------------------------------------------
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+# A pragmatic rule set: correctness and obvious smells, without fighting the
+# existing style. Tighten over time as the codebase is cleaned up.
+select = ["E", "F", "W", "I", "UP", "B", "C4"]
+ignore = [
+    "E501",   # line length handled by black/line-length, not enforced hard
+    "B008",   # function calls in argument defaults (common in Qt code)
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]   # re-exports
+
+# ---------------------------------------------------------------------------
+# Black - formatter
+# ---------------------------------------------------------------------------
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+
+# ---------------------------------------------------------------------------
+# mypy - static type checking (lenient to start, tighten incrementally)
+# ---------------------------------------------------------------------------
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+no_implicit_optional = true
+files = ["src/neuxelec"]
+
+# ---------------------------------------------------------------------------
+# pytest
+# ---------------------------------------------------------------------------
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+addopts = "-ra -q"
+pythonpath = ["src"]

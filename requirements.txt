@@ -1,0 +1,18 @@
+# Runtime dependencies for NeuXelec.
+#
+# Versions are pinned to the exact releases the application was built and
+# tested with, for reproducible installs and reproducible scientific results.
+# To upgrade, bump a version here and re-run the test suite (see CONTRIBUTING.md).
+
+PySide6==6.10.1
+numpy==2.4.2
+nibabel==5.3.3
+SimpleITK==2.5.3
+pyvista==0.47.1
+pyvistaqt==0.11.3
+vtk==9.6.0
+scikit-image==0.26.0
+scipy==1.17.1
+matplotlib==3.10.8
+openpyxl>=3.1          # XLSX export (MNI parcellation table)
+Pillow>=10.0           # image handling / icon generation
